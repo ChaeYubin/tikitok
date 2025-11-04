@@ -1,18 +1,9 @@
-export const Home = () => {
+export const LandingPage = () => {
   return (
-    <div className="flex min-h-screen">
-      <main className="flex min-h-screen w-full flex-col">
-        <span className="font-sans">
-          The quick brown fox jumps over the lazy dog. const total = price * (1 + taxRate);
-          Calculate total cost (sans)
-        </span>
-        <code className="font-bold">
-          The quick brown fox jumps over the lazy dog. const total = price * (1 + taxRate);
-          Calculate total cost (mono)
-        </code>
-      </main>
-    </div>
+    <main className="flex w-full flex-col">
+      <h1 className="m-4 text-xl font-bold">랜딩 페이지</h1>
+    </main>
   )
 }
 
-export default Home
+export default LandingPage

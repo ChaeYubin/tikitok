@@ -17,6 +17,7 @@
   --text-primary: #222222;
   --text-secondary: #555555;
   --text-disabled: #bdbdbd;
+--text-brand: #00b2b2;
 
   /* border 색상 */
   --border-primary: #e0e0e0;
@@ -57,6 +58,7 @@
     --text-primary: #f5f5f5;
     --text-secondary: #b0b0b0;
     --text-disabled: #666666;
+--text-brand: #6fe5e0;
 
     /* border 색상 */
     --border-primary: #333333;
@@ -95,6 +97,7 @@
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
   --color-text-disabled: var(--text-disabled);
+--color-text-brand: var(--text-brand);
   --color-border-primary: var(--border-primary);
   --color-border-disabled: var(--border-disabled);
   --color-status-success: var(--status-success);
