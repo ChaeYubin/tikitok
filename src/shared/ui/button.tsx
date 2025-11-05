@@ -4,11 +4,12 @@ import { ButtonHTMLAttributes, ReactNode } from 'react'
 
 import { cn } from '@/lib/utils'
 
-const buttonVariants = cva('transition-all duration-300 hover:shadow-lg', {
+const buttonVariants = cva('transition-all duration-200', {
   variants: {
     variant: {
-      solid: 'text-primary bg-primary font-semibold text-white',
-      outline: 'border-2 border-border-primary font-semibold text-text-primary',
+      solid: 'text-primary bg-primary font-semibold text-white hover:bg-primary/80',
+      outline:
+        'border-2 border-border-primary font-semibold text-text-primary hover:bg-gray-100 dark:hover:bg-white/10',
     },
     size: {
       sm: 'text-sm px-4 py-2',
