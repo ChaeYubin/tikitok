@@ -22,7 +22,7 @@
       "@/*": ["./src/*"],
       "@shared/*": ["./src/shared/*"],
       "@features/*": ["./src/features/*"],
-      "@lib/*": ["./src/lib/*"]
+      "@lib/*": ["./src/shared/lib/*"]
     }
   },
   "include": [
