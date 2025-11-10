@@ -1,11 +1,11 @@
-import { ControlPanel, DetailPanel, TimeGrid } from '@/features/time-board/components'
+import { ControlPanel, DetailPanel, TimeBoard } from '@/features/time-board/components'
 
 const TimeBoardPage = () => {
   return (
     <>
-      <main className="flex w-full flex-1">
+      <main className="flex h-full w-full">
         <ControlPanel />
-        <TimeGrid />
+        <TimeBoard />
         <DetailPanel />
       </main>
     </>

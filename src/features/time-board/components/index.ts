@@ -1,5 +1,5 @@
 export { Calendar } from './calendar'
 export { Category } from './category'
-export { TimeGrid } from './time-grid'
+export { TimeBoard } from './time-board'
 export { ControlPanel } from './control-panel'
 export { DetailPanel } from './detail-panel'
