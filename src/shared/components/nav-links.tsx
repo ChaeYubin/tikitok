@@ -3,14 +3,14 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-import { Tabs, TabsList, TabsTrigger } from '../ui/tabs'
+import { Tabs, TabsList, TabsTrigger } from '../ui'
 
 const navItems = [
   { href: '/time-board', label: '타임 보드' },
   { href: '/time-report', label: '타임 리포트' },
 ]
 
-const NavLinks = () => {
+export const NavLinks = () => {
   const pathname = usePathname()
 
   return (
@@ -27,5 +27,3 @@ const NavLinks = () => {
     </nav>
   )
 }
-
-export default NavLinks

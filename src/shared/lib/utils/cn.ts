@@ -7,6 +7,6 @@ import { twMerge } from 'tailwind-merge'
  * cn('px-2', 'px-4') // => 'px-4' (나중 값이 우선)
  * cn('text-sm', active && 'text-lg') // 조건부 적용
  */
-export function cn(...inputs: ClassValue[]) {
+export const cn = (...inputs: ClassValue[]) => {
   return twMerge(clsx(inputs))
 }

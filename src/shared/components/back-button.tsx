@@ -2,9 +2,9 @@
 
 import { useRouter } from 'next/navigation'
 
-import { Button, ButtonProps } from '../ui/button'
+import { Button, ButtonProps } from '../ui'
 
-const BackButton = ({ children = '이전 페이지', ...props }: ButtonProps) => {
+export const BackButton = ({ children = '이전 페이지', ...props }: ButtonProps) => {
   const router = useRouter()
 
   return (
@@ -13,5 +13,3 @@ const BackButton = ({ children = '이전 페이지', ...props }: ButtonProps) =>
     </Button>
   )
 }
-
-export default BackButton

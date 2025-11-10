@@ -1,5 +1,4 @@
-import Analytics from '@/features/time-report/analytics'
-import FilterPanel from '@/features/time-report/filter-panel'
+import { Analytics, FilterPanel } from '@/features/time-report/components'
 
 const TimeReportPage = () => {
   return (

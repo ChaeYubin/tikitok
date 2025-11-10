@@ -1,4 +1,4 @@
-const FilterPanel = () => {
+export const FilterPanel = () => {
   return (
     <aside className="bg-sidebar flex w-60 flex-col border-r">
       <div className="flex h-52 items-center justify-center">기간 필터</div>
@@ -6,5 +6,3 @@ const FilterPanel = () => {
     </aside>
   )
 }
-
-export default FilterPanel

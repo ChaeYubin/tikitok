@@ -1,7 +1,7 @@
-import Calendar from './calendar'
-import Category from './category'
+import { Calendar } from './calendar'
+import { Category } from './category'
 
-const ControlPanel = () => {
+export const ControlPanel = () => {
   return (
     <aside className="bg-sidebar-accent flex w-60 flex-col border-r" aria-label="컨트롤 패널">
       <Calendar />
@@ -9,5 +9,3 @@ const ControlPanel = () => {
     </aside>
   )
 }
-
-export default ControlPanel

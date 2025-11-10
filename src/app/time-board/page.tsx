@@ -1,6 +1,4 @@
-import ControlPanel from '@/features/time-board/control-panel'
-import DetailPanel from '@/features/time-board/detail-panel'
-import TimeGrid from '@/features/time-board/time-grid'
+import { ControlPanel, DetailPanel, TimeGrid } from '@/features/time-board/components'
 
 const TimeBoardPage = () => {
   return (

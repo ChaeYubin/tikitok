@@ -1,6 +1,6 @@
-import NavLinks from './nav-links'
+import { NavLinks } from './nav-links'
 
-const Header = () => {
+export const Header = () => {
   return (
     <div className="flex w-full items-center border-b px-4 py-2">
       <div className="pr-4 text-2xl font-bold">
@@ -11,5 +11,3 @@ const Header = () => {
     </div>
   )
 }
-
-export default Header
