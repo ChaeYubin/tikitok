@@ -4,6 +4,7 @@ import { set } from 'date-fns/set'
 import { useState } from 'react'
 
 import { TimeBlock } from '@/shared/types'
+import { cn } from '@/shared/utils'
 
 import { TimeCell } from './time-cell'
 import { HOURS, MINUTES } from '../../constants'
@@ -25,17 +26,17 @@ export const DayColumn = ({ weekday, baseDate }: DayColumnProps) => {
   const [dragging, setDragging] = useState(false)
   const [dragStart, setDragStart] = useState<TimeCellInfo | null>(null)
   const [dragEnd, setDragEnd] = useState<TimeCellInfo | null>(null)
-  const [dragType, setDragType] = useState<TimeBlock['type']>('plan')
+  const [blockType, setBlockType] = useState<TimeBlock['type']>('plan')
   const [timeBlocks, setTimeBlocks] = useState<TimeBlock[]>([])
 
   const onMouseDown = (hour: number, minute: number, type: TimeBlock['type']) => {
     setDragging(true)
     setDragStart({ hour, minute })
     setDragEnd({ hour, minute })
-    setDragType(type)
+    setBlockType(type)
   }
 
-  const handleMouseEnter = (hour: number, minute: number) => {
+  const onMouseEnter = (hour: number, minute: number) => {
     if (dragging) setDragEnd({ hour, minute })
   }
 
@@ -63,10 +64,26 @@ export const DayColumn = ({ weekday, baseDate }: DayColumnProps) => {
         milliseconds: 0,
       })
 
+      // TODO 기존 타임 블록과 겹치도록 생성하려는 경우 어떻게 처리할 지 결정 후 수정
+      // 임시로 겹치는 블록이 있으면 블록 생성 막음
+      const hasOverlap = timeBlocks.some(
+        block => startTime < block.endTime && endTime > block.startTime && block.type === blockType
+      )
+
+      if (hasOverlap) {
+        alert('⚠️ 기존 블록과 시간이 겹칩니다.')
+
+        setDragging(false)
+        setDragStart(null)
+        setDragEnd(null)
+
+        return
+      }
+
       const newBlock: TimeBlock = {
         id: crypto.randomUUID(),
-        type: dragType,
-        title: '',
+        type: blockType,
+        title: 'Block Title',
         startTime,
         endTime,
       }
@@ -94,7 +111,8 @@ export const DayColumn = ({ weekday, baseDate }: DayColumnProps) => {
   }
 
   return (
-    <div className="relative flex-1" onMouseUp={onMouseUp} onMouseLeave={onMouseUp}>
+    <div className="relative flex-1" onMouseUp={onMouseUp}>
+      {/* 타임 그리드(배경) */}
       {HOURS.map(hour =>
         MINUTES.map(minute => {
           const showBorder = minute === 50 // 1시간 단위 border
@@ -105,14 +123,40 @@ export const DayColumn = ({ weekday, baseDate }: DayColumnProps) => {
               hour={hour}
               minute={minute}
               onMouseDown={type => onMouseDown(hour, minute, type)}
-              onMouseEnter={() => handleMouseEnter(hour, minute)}
+              onMouseEnter={() => onMouseEnter(hour, minute)}
               isSelected={isCellSelected(hour, minute)}
-              dragType={dragType}
+              dragType={blockType}
               showBorder={showBorder}
             />
           )
         })
       )}
+
+      {/* 타임 블록 */}
+      <div>
+        {timeBlocks.map(block => {
+          const BlockComp = BlockMap[block.type]
+
+          const startMinutes = block.startTime.getHours() * 60 + block.startTime.getMinutes()
+          const endMinutes = block.endTime.getHours() * 60 + block.endTime.getMinutes()
+
+          const topPercent = (startMinutes / (24 * 60)) * 100
+          const heightPercent = ((endMinutes - startMinutes) / (24 * 60)) * 100
+
+          return (
+            <div
+              key={block.id}
+              className={cn(
+                'pointer-events-none absolute top-0 w-1/2',
+                block.type === 'plan' ? 'left-0' : 'right-0'
+              )}
+              style={{ top: `${topPercent}%`, height: `${heightPercent}%` }}
+            >
+              <BlockComp key={block.id} {...block} isEditing={false} />
+            </div>
+          )
+        })}
+      </div>
     </div>
   )
 }
