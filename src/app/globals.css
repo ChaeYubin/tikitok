@@ -168,8 +168,8 @@
   }
 }
 
-/* Tremor 애니메이션 설정 */
 @theme {
+  /* Tremor 애니메이션 설정 */
   --animate-hide: hide 150ms cubic-bezier(0.16, 1, 0.3, 1);
   --animate-slide-down-and-fade: slideDownAndFade 150ms cubic-bezier(0.16, 1, 0.3, 1);
   --animate-slide-left-and-fade: slideLeftAndFade 150ms cubic-bezier(0.16, 1, 0.3, 1);
@@ -294,6 +294,9 @@
       transform: translateX(100%);
     }
   }
+
+  /* 커스텀 설정 */
+  --text-2xs: 0.623rem;
 }
 
 @layer utilities {
