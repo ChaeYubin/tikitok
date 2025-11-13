@@ -2,6 +2,7 @@
 
 import { set } from 'date-fns/set'
 import { useState } from 'react'
+import { MouseEvent } from 'react'
 
 import { TimeBlock } from '@/shared/types'
 import { cn } from '@/shared/utils'
@@ -29,7 +30,14 @@ export const DayColumn = ({ weekday, baseDate }: DayColumnProps) => {
   const [blockType, setBlockType] = useState<TimeBlock['type']>('plan')
   const [timeBlocks, setTimeBlocks] = useState<TimeBlock[]>([])
 
-  const onMouseDown = (hour: number, minute: number, type: TimeBlock['type']) => {
+  const onMouseDown = (
+    e: MouseEvent<HTMLDivElement>,
+    hour: number,
+    minute: number,
+    type: TimeBlock['type']
+  ) => {
+    e.preventDefault() // 기본 드래그/텍스트 선택 방지
+
     setDragging(true)
     setDragStart({ hour, minute })
     setDragEnd({ hour, minute })
@@ -122,7 +130,7 @@ export const DayColumn = ({ weekday, baseDate }: DayColumnProps) => {
               key={`${weekday}-${hour}-${minute}`}
               hour={hour}
               minute={minute}
-              onMouseDown={type => onMouseDown(hour, minute, type)}
+              onMouseDown={(e, type) => onMouseDown(e, hour, minute, type)}
               onMouseEnter={() => onMouseEnter(hour, minute)}
               isSelected={isCellSelected(hour, minute)}
               dragType={blockType}
