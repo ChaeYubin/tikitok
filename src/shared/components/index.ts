@@ -1,3 +1,3 @@
-export { BackButton } from './back-button'
-export { Header } from './header'
-export { NavLinks } from './nav-links'
+export * from './back-button'
+export * from './header'
+export * from './nav-links'

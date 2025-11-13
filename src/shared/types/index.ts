@@ -1,1 +1,1 @@
-export type { TimeBlock } from './time-block'
+export * from './time-block'
