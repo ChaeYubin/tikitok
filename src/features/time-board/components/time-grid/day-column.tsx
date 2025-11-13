@@ -51,7 +51,7 @@ export const DayColumn = ({ weekday, baseDate }: DayColumnProps) => {
   const onMouseUp = () => {
     if (dragStart && dragEnd) {
       const startTotal = dragStart.hour * 60 + dragStart.minute
-      const endTotal = dragEnd.hour * 60 + dragEnd.minute
+      const endTotal = dragEnd.hour * 60 + dragEnd.minute + 10 // 마지막 셀의 끝까지 포함하도록 10분 추가
 
       const startHour = Math.floor(Math.min(startTotal, endTotal) / 60)
       const startMinute = Math.min(startTotal, endTotal) % 60
