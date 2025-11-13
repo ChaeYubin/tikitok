@@ -8,7 +8,6 @@ import { cn } from '@/shared/utils'
 
 const HOURS = Array.from({ length: 24 }, (_, i) => i) // 0, 1, ..., 23
 const MINUTES = Array.from({ length: 6 }, (_, i) => i * 10) // 0, 10, ... 50
-
 const FORMATTED_HOURS = HOURS.map(
   h => `${h % 12 === 0 ? 12 : h % 12} ${h < 12 ? 'AM' : 'PM'}`
 ).slice(1)
@@ -19,7 +18,7 @@ export const TimeBoard = () => {
   const today = new Date()
   const baseDates = Array.from({ length: 7 }, (_, i) => {
     const date = new Date(today)
-    date.setDate(today.getDate() - today.getDay() + i + 1) // ISO 기준 월요일 시작
+    date.setDate(today.getDate() - today.getDay() + 1 + i) // ISO 기준 월요일 시작
 
     return date
   })
