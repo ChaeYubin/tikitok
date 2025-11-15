@@ -1,37 +1,11 @@
 import './globals.css'
 import '@mantine/core/styles.css'
 
-import { ColorSchemeScript, MantineProvider, mantineHtmlProps } from '@mantine/core'
+import { ColorSchemeScript, mantineHtmlProps } from '@mantine/core'
 import type { Metadata } from 'next'
-import localFont from 'next/font/local'
 
+import { d2coding, DesignSystemProvider, pretendard } from '@/lib/design-system-provider'
 import { Header } from '@/shared/components'
-
-const pretendard = localFont({
-  src: '../../public/fonts/pretendard/PretendardVariable.woff2',
-  display: 'swap',
-  weight: '100 900',
-  variable: '--font-pretendard',
-  fallback: ['system-ui', 'Helvetica', 'Arial', 'sans-serif'],
-})
-
-const d2coding = localFont({
-  src: [
-    {
-      path: '../../public/fonts/d2coding/D2Coding-Regular.ttf',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: '../../public/fonts/d2coding/D2Coding-Bold.ttf',
-      weight: '700',
-      style: 'normal',
-    },
-  ],
-  display: 'swap',
-  variable: '--font-d2coding',
-  fallback: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
-})
 
 export const metadata: Metadata = {
   title: 'TikiTok',
@@ -49,10 +23,10 @@ export default function RootLayout({
         <ColorSchemeScript />
       </head>
       <body className="flex h-screen flex-col antialiased">
-        <MantineProvider>
+        <DesignSystemProvider>
           <Header />
           <div className="flex min-h-0 min-w-0 flex-1 flex-col">{children}</div>
-        </MantineProvider>
+        </DesignSystemProvider>
       </body>
     </html>
   )
