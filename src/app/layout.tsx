@@ -1,9 +1,11 @@
+import './globals.css'
+import '@mantine/core/styles.css'
+
+import { ColorSchemeScript, MantineProvider, mantineHtmlProps } from '@mantine/core'
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 
 import { Header } from '@/shared/components'
-
-import './globals.css'
 
 const pretendard = localFont({
   src: '../../public/fonts/pretendard/PretendardVariable.woff2',
@@ -42,10 +44,15 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="ko" className={`${pretendard.variable} ${d2coding.variable}`}>
+    <html lang="ko" className={`${pretendard.variable} ${d2coding.variable}`} {...mantineHtmlProps}>
+      <head>
+        <ColorSchemeScript />
+      </head>
       <body className="flex h-screen flex-col antialiased">
-        <Header />
-        <div className="flex min-h-0 min-w-0 flex-1 flex-col">{children}</div>
+        <MantineProvider>
+          <Header />
+          <div className="flex min-h-0 min-w-0 flex-1 flex-col">{children}</div>
+        </MantineProvider>
       </body>
     </html>
   )
